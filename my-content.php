@@ -33,11 +33,22 @@ function my_courses_sales_content() {
             echo "<h2>" . __('Your Course Sales', 'text-domain') . "</h2>";
 
             // Display the total earnings above the table
+            echo '<div id="data-summary">';
+    
+            // Display the total earnings inside data-summary
             echo '<div id="instructor-earnings">';
             echo '<strong>Total Earnings: ' . wc_price($total_earnings) . '</strong>';
             echo '</div>';
 
-            // Start the table
+            // Create two additional divs for horizontal spacing
+            $fucking_taxes = $total_earnings - $total_earnings / 1.19;
+            echo '<div id="fucking-taxes"><strong>Taxes: ' . wc_price($fucking_taxes) . '</strong></div>';
+            echo '<div id="your-check"><strong>Your check: ' . wc_price($total_earnings - $fucking_taxes) . '</strong></div>';
+            
+            // Close the data-summary div
+            echo '</div>'; // Close #data-summary
+
+            // Start the table outside of data-summary
             echo '<table id="tablaOrdenes">';
             echo '<tr>';
             echo '<th>' . __('Product Title', 'text-domain') . '</th>';

@@ -28,3 +28,42 @@
     content: "\eeda"; /* Replace with the desired icon or HTML entity */
 }
 
+/* DATA SUMARY STYLE */
+
+/* Style the data-summary container */
+#data-summary {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 720px) {
+    #data-summary {
+        flex-direction: column; /* Change flex direction to column */
+    }
+}
+
+/* Style the summary boxes */
+#fucking-taxes,
+#your-check,
+#instructor-earnings {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    padding: 10px;
+    color: black;
+    font-weight: 500;
+    background: rgb(241, 241, 241);
+    width: 32% !important;
+    border-radius: 3px;
+    border: 1px solid rgb(216, 216, 216);
+}
+
+/* Clear the floating elements */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
