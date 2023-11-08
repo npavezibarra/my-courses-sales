@@ -20,3 +20,11 @@
 #tablaOrdenes th {
     background-color: #f2f2f2;
 }
+
+/* ICONO MENU ITEM - MY ACCOUNT MENU */
+
+/* Define the icon using the ::before pseudo-element */
+.woocommerce-MyAccount-navigation-link--my-courses-sales>a::before {
+    content: "\eeda"; /* Replace with the desired icon or HTML entity */
+}
+

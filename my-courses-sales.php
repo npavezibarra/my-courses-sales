@@ -33,11 +33,9 @@ register_deactivation_hook(__FILE__, 'my_courses_sales_deactivate');
 
 // ADD LINK TO MY ACCOUNT MENU
 function my_courses_sales_link_my_account($items) {
-    // Add an icon (e.g., a money symbol) before the text
-    $icon = '&#x1F4B0;'; // You can replace this with the desired icon or HTML entity
 
     // Add the icon and text
-    $items['my-courses-sales'] = $icon . __('My Courses Sales', 'text-domain');
+    $items['my-courses-sales'] = __('My Courses Sales', 'text-domain');
     return $items;
 }
 
