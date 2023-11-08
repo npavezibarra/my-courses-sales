@@ -1,0 +1,22 @@
+/* Sample styles for your plugin */
+#instructor-earnings {
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 10px;
+    text-align: center;
+}
+
+#tablaOrdenes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaOrdenes th, #tablaOrdenes td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#tablaOrdenes th {
+    background-color: #f2f2f2;
+}

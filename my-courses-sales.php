@@ -48,4 +48,10 @@ require_once plugin_dir_path(__FILE__) . 'my-content.php';
 
 add_action('woocommerce_account_my-courses-sales_endpoint', 'my_courses_sales_content');
 
+// Enqueue your CSS file
+function my_courses_sales_enqueue_styles() {
+    wp_enqueue_style('my-plugin-style', plugin_dir_url(__FILE__) . 'my-plugin-style.css', array(), '1.0.0', 'all');
+}
+add_action('wp_enqueue_scripts', 'my_courses_sales_enqueue_styles');
+
 ?>
