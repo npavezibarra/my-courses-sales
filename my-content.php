@@ -6,7 +6,8 @@ function my_courses_sales_content() {
         // Get the current user's ID
         $current_user_id = get_current_user_id();
 
-        // Initialize total earnings variable
+        // Initialize variables
+        $number_of_students = 0;
         $total_earnings = 0;
 
         // Get all completed orders
@@ -15,40 +16,51 @@ function my_courses_sales_content() {
         ));
 
         if ($customer_orders) {
-            // Calculate total earnings first
+            // Count the number of students and calculate total earnings
             foreach ($customer_orders as $order) {
                 foreach ($order->get_items() as $item_id => $item) {
                     // Retrieve the '_course_instructor_id' value from the product
                     $product_id = $item->get_product_id();
                     $course_instructor_id = get_post_meta($product_id, '_course_instructor_id', true);
-                    
+
                     // Check if the current user's ID matches the 'course_instructor' ID
                     if ($current_user_id == $course_instructor_id) {
-                        // Update total earnings
+                        // Increment number of students and total earnings
+                        $number_of_students++;
                         $total_earnings += $item->get_total();
                     }
                 }
             }
 
-            echo "<h2>" . __('Your Course Sales', 'text-domain') . "</h2>";
+            // Calculate IVA taxes (19%) and final check amount
+            $iva_taxes = $total_earnings * 0.19;
+            $final_check = ($total_earnings - $iva_taxes) * 0.80;
 
-            // Display the total earnings above the table
+            // Display content
+            echo "<h2>" . __('Your Course Sales', 'text-domain') . "</h2>";
+            echo '<h4>Summary of your account</h4>';
             echo '<div id="data-summary">';
-    
-            // Display the total earnings inside data-summary
-            echo '<div id="instructor-earnings">';
-            echo '<strong>Total Earnings: ' . wc_price($total_earnings) . '</strong>';
+
+            // Number of Students
+            echo '<div id="instructor-students">';
+            echo '<strong>Number of Students: ' . $number_of_students . '</strong>';
             echo '</div>';
 
-            // Create two additional divs for horizontal spacing
-            $fucking_taxes = $total_earnings - $total_earnings / 1.19;
-            echo '<div id="fucking-taxes"><strong>Taxes: ' . wc_price($fucking_taxes) . '</strong></div>';
-            echo '<div id="your-check"><strong>Your check: ' . wc_price($total_earnings - $fucking_taxes) . '</strong></div>';
-            
-            // Close the data-summary div
-            echo '</div>'; // Close #data-summary
+            // IVA Taxes
+            echo '<div id="fucking-taxes">';
+            echo '<strong>IVA Taxes: ' . wc_price($iva_taxes) . '</strong>';
+            echo '</div>';
 
-            // Start the table outside of data-summary
+            // Your Check
+            echo '<div id="your-check">';
+            echo '<strong>Your Check: ' . wc_price($final_check) . '</strong>';
+            echo '</div>';
+
+            // Close data-summary
+            echo '</div>';
+
+            // Display the table of latest students
+            echo '<h4>Your latest students:</h4>';
             echo '<table id="tablaOrdenes">';
             echo '<tr>';
             echo '<th>' . __('Product Title', 'text-domain') . '</th>';
@@ -60,16 +72,13 @@ function my_courses_sales_content() {
 
             foreach ($customer_orders as $order) {
                 foreach ($order->get_items() as $item_id => $item) {
-                    // Retrieve the '_course_instructor_id' value from the product
                     $product_id = $item->get_product_id();
                     $course_instructor_id = get_post_meta($product_id, '_course_instructor_id', true);
-                    
-                    // Get the user's data
-                    $course_instructor = get_userdata($course_instructor_id);
-                    $course_instructor_nickname = $course_instructor ? $course_instructor->display_name : '';
 
-                    // Check if the current user's ID matches the 'course_instructor' ID
                     if ($current_user_id == $course_instructor_id) {
+                        $course_instructor = get_userdata($course_instructor_id);
+                        $course_instructor_nickname = $course_instructor ? $course_instructor->display_name : '';
+
                         echo '<tr>';
                         echo '<td>' . $item->get_name() . '</td>';
                         echo '<td>' . esc_html($course_instructor_nickname) . '</td>';

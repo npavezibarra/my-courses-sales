@@ -1,5 +1,5 @@
 /* Sample styles for your plugin */
-#instructor-earnings {
+#instructor-students {
     color: #333;
     background-color: #f5f5f5;
     padding: 10px;
@@ -22,21 +22,17 @@
 }
 
 /* ICONO MENU ITEM - MY ACCOUNT MENU */
-
-/* Define the icon using the ::before pseudo-element */
 .woocommerce-MyAccount-navigation-link--my-courses-sales>a::before {
     content: "\eeda"; /* Replace with the desired icon or HTML entity */
 }
 
 /* DATA SUMARY STYLE */
-
-/* Style the data-summary container */
 #data-summary {
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 60px !important;
 }
 
 @media screen and (max-width: 720px) {
@@ -46,9 +42,9 @@
 }
 
 /* Style the summary boxes */
+#instructor-students,
 #fucking-taxes,
-#your-check,
-#instructor-earnings {
+#your-check { /* Added #instructor-students here */
     display: flex;
     justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
