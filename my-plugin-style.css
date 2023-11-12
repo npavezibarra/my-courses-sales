@@ -37,9 +37,20 @@
 
 @media screen and (max-width: 720px) {
     #data-summary {
-        flex-direction: column; /* Change flex direction to column */
+        flex-direction: column;
+        width: 100%; /* Set the width to 80% of the parent container */
+        margin-left: auto; /* Auto margin for horizontal centering */
+        margin-right: auto; /* Auto margin for horizontal centering */
+    }
+
+    #instructor-students,
+    #fucking-taxes,
+    #your-check { 
+        width: 100% !important;
+        margin-bottom:20px;
     }
 }
+
 
 /* Style the summary boxes */
 #instructor-students,
@@ -52,7 +63,7 @@
     color: black;
     font-weight: 500;
     background: rgb(241, 241, 241);
-    width: 32% !important;
+    width: 32%;
     border-radius: 3px;
     border: 1px solid rgb(216, 216, 216);
 }
@@ -62,4 +73,12 @@
     content: "";
     clear: both;
     display: table;
+}
+
+
+/* Your Check My Account Card */
+
+div#your-check {
+    background: #5ac55a !important;
+    color: white !important;
 }
