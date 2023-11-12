@@ -10,6 +10,9 @@ function my_courses_sales_content() {
         $number_of_students = 0;
         $total_earnings = 0;
 
+        $tax_rate = floatval(get_option('my_courses_sales_tax_rate', 0.19)); // Default to 19% if not set
+        $instructor_commission = floatval(get_option('my_courses_sales_instructor_commission', 0.80)); // Default to 80% if not set
+
         // Get all completed orders
         $customer_orders = wc_get_orders(array(
             'status' => 'completed',
@@ -32,9 +35,9 @@ function my_courses_sales_content() {
                 }
             }
 
-            // Calculate IVA taxes (19%) and final check amount
-            $iva_taxes = $total_earnings * 0.19;
-            $final_check = ($total_earnings - $iva_taxes) * 0.80;
+            // Calculate IVA taxes and final check amount
+            $iva_taxes = $total_earnings * $tax_rate;
+            $final_check = ($total_earnings - $iva_taxes) * $instructor_commission;
 
             // Display content
             echo "<h2>" . __('Your Course Sales', 'text-domain') . "</h2>";
@@ -91,11 +94,7 @@ function my_courses_sales_content() {
                     }
                 }
             }
-
-// ...
-
-
-            // Close the table
+// Close the table
             echo '</table>';
         } else {
             echo '<p>' . __('No completed orders found.', 'text-domain') . '</p>';

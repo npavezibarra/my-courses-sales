@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
 
 // INCLUDE FILES
 include_once plugin_dir_path(__FILE__) . 'course-instructor-metabox.php';
+include_once plugin_dir_path(__FILE__) . 'admin/admin-page.php';
+
 
 // CUSTOM ENDPOINT FOR MY ACCOUNT PAGE
 function my_courses_sales_endpoint() {
@@ -51,5 +53,13 @@ function my_courses_sales_enqueue_styles() {
     wp_enqueue_style('my-plugin-style', plugin_dir_url(__FILE__) . 'my-plugin-style.css', array(), '1.0.0', 'all');
 }
 add_action('wp_enqueue_scripts', 'my_courses_sales_enqueue_styles');
+
+/// Hook the Admin Page Function
+add_action('admin_menu', 'my_courses_sales_add_admin_page');
+
+/// ADMIN PAGE
+
+include_once plugin_dir_path(__FILE__) . 'admin/admin-settings.php';
+
 
 ?>
