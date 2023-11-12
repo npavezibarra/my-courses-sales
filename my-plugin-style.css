@@ -82,3 +82,16 @@ div#your-check {
     background: #5ac55a !important;
     color: white !important;
 }
+
+/* DATE SELECTOR MY ACCOUNT MY COURSES SALES */
+
+form#date-filter {
+    background: #f2f2f2;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+input#end-date,
+input#start-date {
+    margin: 5px 5px 5px 5px;
+}
