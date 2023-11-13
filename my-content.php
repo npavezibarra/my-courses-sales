@@ -98,10 +98,15 @@ function my_courses_sales_content() {
 
             // Display pagination
             echo '<div class="pagination">';
-            for ($i = 1; $i <= $total_pages; $i++) {
-                echo '<a href="?page_num=' . $i . '">' . $i . '</a> ';
-            }
-            echo '</div>';
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    if ($i == $current_page) {
+                // Highlight the current page
+                        echo '<a href="?page_num=' . $i . '" style="color: #385dff;">' . $i . '</a> ';
+                    } else {
+                        echo '<a href="?page_num=' . $i . '">' . $i . '</a> ';
+                    }
+}   
+echo '</div>';
         } else {
             echo '<p>' . __('No completed orders found.', 'text-domain') . '</p>';
         }
