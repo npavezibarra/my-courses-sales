@@ -14,9 +14,24 @@ function my_courses_sales_content() {
             'status' => 'completed',
         ));
 
+        // Default date values
+        $end_date = date('Y-m-d'); // Today's date
+        $start_date = date('Y-m-d', strtotime('-3 days')); // 3 days ago
+
+        // Check if the form is submitted and update dates accordingly
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['start_date']) && isset($_POST['end_date'])) {
+            $start_date = $_POST['start_date'];
+            $end_date = $_POST['end_date'];
+        }
+
+        $customer_orders = wc_get_orders(array(
+            'status' => 'completed',
+            'date_created' => $start_date . '...'. $end_date, // Filter orders within the date range
+        ));        
+
         if ($customer_orders) {
             // Pagination setup
-            $per_page = 3;
+            $per_page = 10;
             $current_page = isset($_GET['page_num']) ? max(1, intval($_GET['page_num'])) : 1;
             $start = ($current_page - 1) * $per_page;
             $end = $start + $per_page;
@@ -45,9 +60,9 @@ function my_courses_sales_content() {
             echo '<h4>Summary of your account</h4>';
             echo '<form method="post" id="date-filter">';
             echo '<label for="start-date">Start Date:</label>';
-            echo '<input type="date" id="start-date" name="start_date">';
+            echo '<input type="date" id="start-date" name="start_date" value="' . $start_date . '">';
             echo '<label for="end-date">End Date:</label>';
-            echo '<input type="date" id="end-date" name="end_date">';
+            echo '<input type="date" id="end-date" name="end_date" value="' . $end_date . '">';
             echo '<input type="submit" value="Filter">';
             echo '</form>';
             echo '<div id="data-summary">';
