@@ -122,9 +122,26 @@ function my_courses_sales_content() {
                     }
 }   
 echo '</div>';
-        } else {
-            echo '<p>' . __('No completed orders found.', 'text-domain') . '</p>';
-        }
+} else {
+    // Display the section title and the three bubbles with respective data
+    echo "<h2>" . __('Your Course Sales', 'text-domain') . "</h2>";
+    echo '<div id="data-summary">';
+    echo '<div id="instructor-students">';
+    echo '<strong>Number of Students: 0</strong>'; // No students as there are no orders
+    echo '</div>';
+    echo '<div id="fucking-taxes">';
+    echo '<strong>IVA Taxes: ' . wc_price(0) . '</strong>'; // No taxes as there are no orders
+    echo '</div>';
+    echo '<div id="your-check">';
+    echo '<strong>Your Check: ' . wc_price(0) . '</strong>'; // No earnings as there are no orders
+    echo '</div>';
+    echo '</div>';
+
+    // Since there are no orders, display a message instead of the table
+    echo '<h3>' . __('No completed orders found.', 'text-domain') . '</h3>';
+    echo '<p>' . __('If you want to find out how to sell more <a>click here</a>.', 'text-domain') . '</p>';
+}
+
     } else {
         echo '<p>' . __('Please log in to view your orders.', 'text-domain') . '</p>';
     }
