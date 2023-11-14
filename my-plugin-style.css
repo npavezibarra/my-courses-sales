@@ -1,11 +1,6 @@
-/* Sample styles for your plugin */
-#instructor-students {
-    color: #333;
-    background-color: #f5f5f5;
-    padding: 10px;
-    text-align: center;
-}
+/* Base Styles for the Plugin */
 
+/* Table styles */
 #tablaOrdenes {
     width: 100%;
     border-collapse: collapse;
@@ -21,41 +16,10 @@
     background-color: #f2f2f2;
 }
 
-/* ICONO MENU ITEM - MY ACCOUNT MENU */
-.woocommerce-MyAccount-navigation-link--my-courses-sales>a::before {
-    content: "\eeda"; /* Replace with the desired icon or HTML entity */
-}
-
-/* DATA SUMARY STYLE */
-#data-summary {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 60px !important;
-}
-
-@media screen and (max-width: 720px) {
-    #data-summary {
-        flex-direction: column;
-        width: 100%; /* Set the width to 80% of the parent container */
-        margin-left: auto; /* Auto margin for horizontal centering */
-        margin-right: auto; /* Auto margin for horizontal centering */
-    }
-
-    #instructor-students,
-    #fucking-taxes,
-    #your-check { 
-        width: 100% !important;
-        margin-bottom:20px;
-    }
-}
-
-
-/* Style the summary boxes */
+/* Summary boxes styles */
 #instructor-students,
 #fucking-taxes,
-#your-check { /* Added #instructor-students here */
+#your-check { 
     display: flex;
     justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
@@ -68,23 +32,19 @@
     border: 1px solid rgb(216, 216, 216);
 }
 
-/* Clear the floating elements */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
+/* Individual summary box styles */
+#instructor-students {
+    color: #333;
+    background-color: #f5f5f5;
+    text-align: center;
 }
-
-
-/* Your Check My Account Card */
 
 div#your-check {
     background: #5ac55a !important;
     color: white !important;
 }
 
-/* DATE SELECTOR MY ACCOUNT MY COURSES SALES */
-
+/* Date selector form styles */
 form#date-filter {
     background: #f2f2f2;
     padding: 8px;
@@ -93,5 +53,46 @@ form#date-filter {
 
 input#end-date,
 input#start-date {
-    margin: 5px 5px 5px 5px;
+    margin: 5px;
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 720px) {
+    #data-summary {
+        flex-direction: column;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #instructor-students,
+    #fucking-taxes,
+    #your-check { 
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+}
+
+/* Miscellaneous Styles */
+
+/* Clearfix for floating elements */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Menu icon style */
+.woocommerce-MyAccount-navigation-link--my-courses-sales>a::before {
+    content: "\eeda"; /* Replace with the desired icon or HTML entity */
+}
+
+/* Data summary style */
+#data-summary {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px !important;
 }

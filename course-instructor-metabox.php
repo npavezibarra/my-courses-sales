@@ -22,7 +22,7 @@ function my_courses_sales_course_instructor_metabox_callback($post) {
 
     // Get all users with 'author' role.
     $args = [
-        'role' => 'author',
+        'role__in' => ['author', 'administrator'],
         'orderby' => 'display_name'
     ];
     $users = get_users($args);
